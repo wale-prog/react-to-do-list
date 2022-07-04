@@ -1,32 +1,43 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class InputTodo extends Component {
+  state = {
+    title: "",
+    name: "",
+  };
 
-    state = {
-        title: '',
-        name: ''
-    }
+  onChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
 
-    onChange = (event)=>{
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.title.trim()){
+        this.props.addTodoProps(this.state.title);
         this.setState({
-            [event.target.name]: event.target.value
-        })
+          title: "",
+        });
+      }else{
+        alert("Please write item")
+      }
     }
+  
 
-    render() {
-        return (
-            <form>
-                <input type="text" placeholder="Add Todo..."
-                value={this.state.title}
-                onChange={this.onChange}
-                name="title" />
-                <input type="text" placeholder='Enter your name'
-                value={this.state.name}
-                onChange={this.onChange}
-                name="name" />
-                <button>Submit</button>
-            </form>
-        )
-    }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit} className="form-container">
+        <input
+          type="text"
+          placeholder="Add Todo..."
+          value={this.state.title}
+          onChange={this.onChange}
+          name="title"
+        />
+        <button className="input-submit">Submit</button>
+      </form>
+    );
+  }
 }
 export default InputTodo;
