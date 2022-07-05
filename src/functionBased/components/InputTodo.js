@@ -1,32 +1,32 @@
 import React, { useState } from "react";
+import { FaPlusCircle } from "react-icons/fa";
 
 const InputTodo = (props) => {
   const [inputTitle, setInputTitle] = useState({
-    title: ""
+    title: "",
   });
-  
 
-  const onChange = (event) => {     
+  const onChange = (event) => {
     setInputTitle({
       ...inputTitle,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  const handleSubmit = (event) =>{
-    event.preventDefault()
-    if(inputTitle.title.trim()){
-      props.addTodoProps(inputTitle.title)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (inputTitle.title.trim()) {
+      props.addTodoProps(inputTitle.title);
       setInputTitle({
-        title: ""
-      })
-    }else {
-      alert("Please write an item")
+        title: "",
+      });
+    } else {
+      alert("Please write an item");
     }
-  }
+  };
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      <input 
+      <input
         type="text"
         className="input-text"
         placeholder="Add Todo..."
@@ -34,9 +34,12 @@ const InputTodo = (props) => {
         onChange={onChange}
         name="title"
       />
-      <button className="input-submit">Submit</button>
-
+      <button className="input-submit">
+        <FaPlusCircle
+        style={{ color: "darkcyan", fontSize: "20px", marginTop: "2px" }} 
+        />
+      </button>
     </form>
-  )
+  );
 };
 export default InputTodo;

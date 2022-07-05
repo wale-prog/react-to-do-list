@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./TodoItem.module.css";
+import { FaTrash } from 'react-icons/fa'
 
 const TodoItem = (props) => {
   const [editing, setEditing] = useState(false);
@@ -48,7 +49,11 @@ const TodoItem = (props) => {
           className={style.checkbox}
         />
         <span style={completed ? completedStyle : null}>{title}</span>
-        <button onClick={() => props.handleDelete(id)}>Delete</button>
+        <button onClick={() => props.handleDelete(id)}>
+          <FaTrash
+          style={{ color: "orangered", fontSize: "16px" }}
+          />
+        </button>
       </div>
       <input
         type="text"
