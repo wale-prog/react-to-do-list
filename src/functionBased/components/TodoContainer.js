@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import TodoList from "./TodoList";
 import Header from "./Header";
 import InputTodo from "./InputTodo";
 import { v4 as uuid4 } from "uuid";
+import { Route, Switch } from "react-router-dom";
+import About from "./pages/About";
+import NotMatch from "./pages/NotMatch";
+import Navbar from "./Navbar";
 
 const TodoContainer = () => {
-
   const getInitialTodos = () => {
     // getting stored items
     const temp = localStorage.getItem("todos");
@@ -47,34 +50,46 @@ const TodoContainer = () => {
 
   const setUpdate = (updatedTitle, id) => {
     setTodos(
-      todos.map(todo => {
+      todos.map((todo) => {
         if (todo.id === id) {
           todo.title = updatedTitle;
         }
         return todo;
       })
     );
-  }; 
+  };
 
   useEffect(() => {
-    const temp = JSON.stringify(todos)
-    localStorage.setItem("todos", temp)
-    
+    const temp = JSON.stringify(todos);
+    localStorage.setItem("todos", temp);
   }, [todos]);
 
   return (
-    <div className="container">
-      <div className="inner">
-        <Header />
-        <InputTodo addTodoProps={addTodoItem} />
-        <TodoList
-          todos={todos}
-          handleChangeProps={handleChange}
-          handleDelete={delTodo}
-          setUpdate={setUpdate}
-        />
-      </div>
-    </div>
+    <Fragment>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          <div className="container">
+            <div className="inner">
+              <Header />
+              <InputTodo addTodoProps={addTodoItem} />
+              <TodoList
+                todos={todos}
+                handleChangeProps={handleChange}
+                handleDelete={delTodo}
+                setUpdate={setUpdate}
+              />
+            </div>
+          </div>
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="*">
+          <NotMatch />
+        </Route>
+      </Switch>
+    </Fragment>
   );
 };
 export default TodoContainer;
