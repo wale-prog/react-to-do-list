@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import style from "./TodoItem.module.css";
-import { FaTrash } from 'react-icons/fa'
+/* eslint-disable */
+import React, { useState, useEffect } from 'react';
+import { FaTrash } from 'react-icons/fa';
+import style from './TodoItem.module.css';
 
 const TodoItem = (props) => {
   const [editing, setEditing] = useState(false);
@@ -10,34 +11,32 @@ const TodoItem = (props) => {
   };
 
   const handleUpdateDone = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       setEditing(false);
     }
   };
 
   const completedStyle = {
-    fontStyle: "italic",
-    color: "#595959",
+    fontStyle: 'italic',
+    color: '#595959',
     opacity: 0.4,
-    textDecoration: "line-through",
+    textDecoration: 'line-through',
   };
 
   const { id, title, completed } = props.todo;
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
-    viewMode.display = "none";
+    viewMode.display = 'none';
   } else {
-    editMode.display = "none";
+    editMode.display = 'none';
   }
 
-  useEffect(()=>{
-    return () => {
-      console.log("Cleaning up...")
-    }
-  }, [])
+  useEffect(() => () => {
+    console.log('Cleaning up...');
+  }, []);
 
   return (
     <li className={style.item}>
@@ -51,7 +50,7 @@ const TodoItem = (props) => {
         <span style={completed ? completedStyle : null}>{title}</span>
         <button onClick={() => props.handleDelete(id)}>
           <FaTrash
-          style={{ color: "orangered", fontSize: "16px" }}
+            style={{ color: 'orangered', fontSize: '16px' }}
           />
         </button>
       </div>

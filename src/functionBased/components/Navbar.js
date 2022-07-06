@@ -1,47 +1,44 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { MdClose } from 'react-icons/md'
-import { FiMenu } from 'react-icons/fi'
+/* eslint-disable */
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { MdClose } from 'react-icons/md';
+import { FiMenu } from 'react-icons/fi';
 
 const Navbar = () => {
-
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   const handleToggle = () => {
-    setNavbarOpen(prev => {
-     return !prev
-    })
-  }
+    setNavbarOpen((prev) => !prev);
+  };
   const links = [
     {
       id: 1,
-      path: "/",
-      text: "Home",
+      path: '/',
+      text: 'Home',
     },
     {
       id: 2,
-      path: "/about",
-      text: "About",
+      path: '/about',
+      text: 'About',
     },
   ];
   return (
     <nav className="navBar">
-      <button onClick={handleToggle}>{navbarOpen ? (
-        <MdClose style={{ color: "#fff", width: "40px", height: "40px" }} />
+      <button type='submit' onClick={handleToggle}>
+        {navbarOpen ? (
+          <MdClose style={{ color: '#fff', width: '40px', height: '40px' }} />
         ) : (
-          <FiMenu style={{ color: "#7b7b7b", width: "40px", height: "40px" }} />
-          )}
-          </button>
-      <ul className={`menuNav ${navbarOpen ? "showMenu" : ""}`}>
-        {links.map((link) => {
-          return (
-            <li onClick={handleToggle} key={link.id}>
-              <NavLink to={link.path} activeClassName="active-link" exact>
-                {link.text}
-              </NavLink>
-            </li>
-          );
-        })}
+          <FiMenu style={{ color: '#7b7b7b', width: '40px', height: '40px' }} />
+        )}
+      </button>
+      <ul className={`menuNav ${navbarOpen ? 'showMenu' : ''}`}>
+        {links.map((link) => (
+          <li onClick={handleToggle} key={link.id}>
+            <NavLink to={link.path} activeClassName="active-link" exact>
+              {link.text}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

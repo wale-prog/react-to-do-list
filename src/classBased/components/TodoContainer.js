@@ -1,28 +1,29 @@
-import React, { Component } from "react";
-import TodoList from "./TodoList";
-import Header from "./Header";
-import InputTodo from "./InputTodo";
-import { v4 as uuid4 } from "uuid";
+/* eslint-disable */
+import React, { Component } from 'react';
+import { v4 as uuid4 } from 'uuid';
+import TodoList from './TodoList';
+import Header from './Header';
+import InputTodo from './InputTodo';
 
 class TodoContainer extends Component {
   state = {
     todos: [],
   };
 
-    componentDidMount() {
-     const temp = localStorage.getItem("todos")
-     const loadedTodos = JSON.parse(temp);
-     if(loadedTodos){
-        this.setState({
-            todos: loadedTodos
-        })
-     }
+  componentDidMount() {
+    const temp = localStorage.getItem('todos');
+    const loadedTodos = JSON.parse(temp);
+    if (loadedTodos) {
+      this.setState({
+        todos: loadedTodos,
+      });
     }
+  }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.todos !== this.state.todos) {
-        const temp = JSON.stringify(this.state.todos)
-        localStorage.setItem("todos", temp)
+    if (prevProps.todos !== this.state.todos) {
+      const temp = JSON.stringify(this.state.todos);
+      localStorage.setItem('todos', temp);
     }
   }
 
@@ -49,7 +50,7 @@ class TodoContainer extends Component {
   addTodoItem = (title) => {
     const newTodo = {
       id: uuid4(),
-      title: title,
+      title,
       completed: false,
     };
     this.setState({

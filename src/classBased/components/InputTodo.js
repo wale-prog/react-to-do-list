@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+/* eslint-disable */
+import React, { Component } from 'react';
 
 class InputTodo extends Component {
   state = {
-    title: "",
-    name: "",
+    title: '',
+    name: '',
   };
 
   onChange = (event) => {
@@ -14,16 +15,15 @@ class InputTodo extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.title.trim()){
-        this.props.addTodoProps(this.state.title);
-        this.setState({
-          title: "",
-        });
-      }else{
-        alert("Please write item")
-      }
+    if (this.state.title.trim()) {
+      this.props.addTodoProps(this.state.title);
+      this.setState({
+        title: '',
+      });
+    } else {
+      alert('Please write item');
     }
-  
+  }
 
   render() {
     return (
